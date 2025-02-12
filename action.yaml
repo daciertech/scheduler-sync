@@ -1,0 +1,23 @@
+name: 'SchedulerCliSync'
+description: 'Use the Dacier SchedulerCli to sync, apply or submit jobs'
+inputs:
+  organization:
+    description: 'The Organizational Unit that you want to sync'
+    required: false
+    default: ''
+  token:
+    description: 'The PAT Token used to access the Git repository'
+    required: false
+    default: ''
+  tenant:
+    description: 'The name of the Tenant that the action will be performed on'
+    required: false
+    default: ''
+runs:
+  using: 'docker'
+  image: 'dacier/scheduler-cli:latest'
+  args:
+    - ${{ inputs.organization }}
+    - ${{ inputs.token }}
+    - ${{ inputs.tenant }}
+ 
