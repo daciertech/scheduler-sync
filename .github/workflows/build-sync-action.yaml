@@ -65,7 +65,7 @@ jobs:
         push: true
         tags: ${{ secrets.SCHEDULERDEV_REGISTRY_LOGIN_SERVER }}/scheduler-cli-sync-action:latest
         labels: ${{ steps.meta.outputs.labels }}
-        args: |
+        build-args: |
           GITHUB_ACTOR=${{ github.actor }}
           GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
           ORGUNIT=${{ github.event.inputs.username }}
