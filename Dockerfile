@@ -6,8 +6,18 @@ ARG GITHUB_TOKEN
 # Configure NuGet source
 RUN dotnet nuget add source --username $GITHUB_ACTOR --password $GITHUB_TOKEN --store-password-in-clear-text --name github "https://nuget.pkg.github.com/daciertech/index.json"
 
+# Add .NET Core SDK tools
+RUN cat << \EOF >> ~/.profile \
+export PATH="$PATH:/root/.dotnet/tools" \
+EOF
+
+RUN cat << \EOF >> ~/.bash_profile \
+export PATH="$PATH:/root/.dotnet/tools" \
+EOF
+
 # Install the tool
-RUN dotnet tool install Dacier.SchedulerCli --global
+RUN export PATH="$PATH:/root/.dotnet/tools" \
+dotnet tool install Dacier.SchedulerCli --global
 
 # Stage 2: Final
 FROM mcr.microsoft.com/dotnet/runtime:9.0-bookworm-slim AS final
