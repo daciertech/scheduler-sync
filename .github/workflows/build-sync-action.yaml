@@ -19,9 +19,10 @@ on:
 jobs:
   build:
 
+    #permissions:
+    #  packages: write
+
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
     defaults:
       run:
         shell: bash
