@@ -8,8 +8,8 @@ RUN dotnet nuget add source --username $GITHUB_ACTOR --password $GITHUB_TOKEN --
 
 # Install the tool
 ENV PATH="/root/.dotnet/tools:${PATH}"
-RUN export PATH="$PATH:/root/.dotnet/tools" \
-dotnet tool install Dacier.SchedulerCli --global
+
+RUN dotnet tool install Dacier.SchedulerCli --global
 
 # Stage 2: Final
 FROM mcr.microsoft.com/dotnet/runtime:9.0-bookworm-slim AS final
