@@ -15,7 +15,7 @@ inputs:
     default: ''
 runs:
   using: 'docker'
-  image: 'dacier/scheduler-cli:latest'
+  image: 'daciertech/scheduler-sync/Dockerfile'
   args:
     - ${{ inputs.organization }}
     - ${{ inputs.token }}
