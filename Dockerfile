@@ -6,16 +6,8 @@ ARG GITHUB_TOKEN
 # Configure NuGet source
 RUN dotnet nuget add source --username $GITHUB_ACTOR --password $GITHUB_TOKEN --store-password-in-clear-text --name github "https://nuget.pkg.github.com/daciertech/index.json"
 
-# Add .NET Core SDK tools
-RUN cat << \EOF >> ~/.profile \
-export PATH="$PATH:/root/.dotnet/tools" \
-EOF
-
-RUN cat << \EOF >> ~/.bash_profile \
-export PATH="$PATH:/root/.dotnet/tools" \
-EOF
-
 # Install the tool
+ENV PATH="/root/.dotnet/tools:${PATH}"
 RUN export PATH="$PATH:/root/.dotnet/tools" \
 dotnet tool install Dacier.SchedulerCli --global
 
