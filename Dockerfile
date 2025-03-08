@@ -14,6 +14,7 @@ RUN dotnet tool install Dacier.SchedulerCli --global
 # Stage 2: Final
 FROM mcr.microsoft.com/dotnet/runtime:9.0-bookworm-slim AS final
 COPY --from=build /root/.dotnet /root/.dotnet
+COPY --from=build /usr/share/dotnet /usr/share/dotnet
 COPY sync.sh /sync.sh
 RUN chmod +x /sync.sh
 ENV PATH="/root/.dotnet/tools:${PATH}"
