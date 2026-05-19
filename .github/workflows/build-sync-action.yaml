@@ -19,6 +19,9 @@ on:
 jobs:
   build:
 
+    #permissions:
+    #  packages: write
+
     runs-on: ubuntu-latest
     defaults:
       run:
